@@ -11,14 +11,14 @@ public final class PasswordCheckerUtility {
 			throw new LengthException();
 		}
 
-		char[] temp = passwordString.toCharArray();
+		char[] password = passwordString.toCharArray();
 
-		if (!Character.isUpperCase(temp[0])) {
+		if (!Character.isUpperCase(password[0])) {
 
 			boolean hasUpper = false;
 
-			for (int i = 1; i < temp.length; i++) {
-				if (Character.isUpperCase(temp[i])) {
+			for (int i = 1; i < password.length; i++) {
+				if (Character.isUpperCase(password[i])) {
 					hasUpper = true;
 					break;
 				}
@@ -29,12 +29,12 @@ public final class PasswordCheckerUtility {
 			}
 		}
 
-		if (!Character.isLowerCase(temp[0])) {
+		if (!Character.isLowerCase(password[0])) {
 
 			boolean hasLower = false;
 
-			for (int i = 1; i < temp.length; i++) {
-				if (Character.isLowerCase(temp[i])) {
+			for (int i = 1; i < password.length; i++) {
+				if (Character.isLowerCase(password[i])) {
 					hasLower = true;
 					break;
 				}
@@ -45,12 +45,12 @@ public final class PasswordCheckerUtility {
 			}
 		}
 
-		if (!Character.isDigit(temp[0])) {
+		if (!Character.isDigit(password[0])) {
 
 			boolean hasDigit = false;
 
-			for (int i = 1; i < temp.length; i++) {
-				if (Character.isDigit(temp[i])) {
+			for (int i = 1; i < password.length; i++) {
+				if (Character.isDigit(password[i])) {
 					hasDigit = true;
 					break;
 				}
@@ -69,8 +69,8 @@ public final class PasswordCheckerUtility {
 			throw new NoSpecialCharacterException();
 		}
 
-		for (int i = 0; i < temp.length - 2; i++) {
-			if (temp[i] == temp[i + 1] && temp[i] == temp[i + 2]) {
+		for (int i = 0; i < password.length - 2; i++) {
+			if (password[i] == password[i + 1] && password[i] == password[i + 2]) {
 				throw new InvalidSequenceException();
 			}
 		}
