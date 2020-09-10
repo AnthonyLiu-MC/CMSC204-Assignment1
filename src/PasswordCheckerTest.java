@@ -21,8 +21,8 @@ public class PasswordCheckerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		String[] p = { "334455BB", "LOWERCASE", "Im2cool4U", "george2ZZZ@", "4sale", "bertha22", "4wardMarch", "august30", "abcdef",
-				"Applesxx", "aa11b", "pilotProject", "myPassword", "myPassword2" };
+		String[] p = { "334455BB", "Im2cool4U#", "george2ZZZ", "4sal#", "bertha22#", "4wardMarch#", "august30",
+				"abcdef", "Applesxx#", "aa11b", "pilotProject", "myPassword", "myPassword2" };
 		passwords = new ArrayList<String>();
 		passwords.addAll(Arrays.asList(p)); // puts strings into the ArrayList
 
@@ -44,11 +44,11 @@ public class PasswordCheckerTest {
 	@Test
 	public void testIsValidPasswordTooShort() {
 		try {
-			assertTrue(PasswordCheckerUtility.isValidPassword("abcABC12@"));
-			PasswordCheckerUtility.isValidPassword("abc12");
+			assertTrue(PasswordCheckerUtility.isValidPassword("abcABC12#"));
+			PasswordCheckerUtility.isValidPassword("ab12#");
 			assertTrue("Did not throw lengthException", false);
 		} catch (LengthException e) {
-			assertTrue("Successfully threw a lengthException", true);
+			assertTrue("Successfully threw a lengthExcepetion", true);
 		} catch (Exception e) {
 			assertTrue("Threw some other exception besides lengthException", false);
 		}
@@ -61,8 +61,8 @@ public class PasswordCheckerTest {
 	@Test
 	public void testIsValidPasswordNoUpperAlpha() {
 		try {
-			assertTrue(PasswordCheckerUtility.isValidPassword("1234567aA@"));
-			PasswordCheckerUtility.isValidPassword("1234567a");
+			assertTrue(PasswordCheckerUtility.isValidPassword("1234567aA#"));
+			PasswordCheckerUtility.isValidPassword("1234567a#");
 			assertTrue("Did not throw NoUpperAlphaException", false);
 		} catch (NoUpperAlphaException e) {
 			assertTrue("Successfully threw a NoUpperAlphaExcepetion", true);
@@ -78,8 +78,8 @@ public class PasswordCheckerTest {
 	@Test
 	public void testIsValidPasswordNoLowerAlpha() {
 		try {
-			assertTrue(PasswordCheckerUtility.isValidPassword("1234567Aa@"));
-			PasswordCheckerUtility.isValidPassword("1234567A");
+			assertTrue(PasswordCheckerUtility.isValidPassword("1234567Aa#"));
+			PasswordCheckerUtility.isValidPassword("1234567A#");
 			assertTrue("Did not throw NoLowerAlphaException", false);
 		} catch (NoLowerAlphaException e) {
 			assertTrue("Successfully threw a NoLowerAlphaExcepetion", true);
@@ -95,8 +95,8 @@ public class PasswordCheckerTest {
 	@Test
 	public void testIsWeakPassword() {
 		try {
-			assertEquals(true, PasswordCheckerUtility.isValidPassword("1234aaAA@"));
-			boolean weakPwd = PasswordCheckerUtility.isWeakPassword("1234aaAA@");
+			assertEquals(true, PasswordCheckerUtility.isValidPassword("1234aaAA#"));
+			boolean weakPwd = PasswordCheckerUtility.isWeakPassword("1234aaA#");
 			assertTrue(weakPwd);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -111,8 +111,8 @@ public class PasswordCheckerTest {
 	@Test
 	public void testIsValidPasswordInvalidSequence() {
 		try {
-			assertEquals(true, PasswordCheckerUtility.isValidPassword("1234aaAA@"));
-			PasswordCheckerUtility.isValidPassword("1234aAAA@");
+			assertEquals(true, PasswordCheckerUtility.isValidPassword("1234aaAA#"));
+			PasswordCheckerUtility.isValidPassword("1234aAAA#");
 			assertTrue("Did not throw an InvalidSequenceException", false);
 		} catch (InvalidSequenceException e) {
 			assertTrue("Successfully threw an InvalidSequenceExcepetion", true);
@@ -139,11 +139,11 @@ public class PasswordCheckerTest {
 		scan = new Scanner(results.get(1)); //
 		assertEquals(scan.next(), "george2ZZZ");
 		nextResults = scan.nextLine().toLowerCase();
-		assertTrue(nextResults.contains("more than two"));
+		assertTrue(nextResults.contains("special"));
 		// assertEquals(scan.nextLine(), " The password cannot contain more than two of
 		// the same character in sequence.");
 		scan = new Scanner(results.get(3)); //
-		assertEquals(scan.next(), "bertha22");
+		assertEquals(scan.next(), "bertha22#");
 		nextResults = scan.nextLine().toLowerCase();
 		assertTrue(nextResults.contains("uppercase"));
 		// assertEquals(scan.nextLine(), " The password must contain at least one
@@ -155,7 +155,7 @@ public class PasswordCheckerTest {
 		// assertEquals(scan.nextLine(), " The password must contain at least one
 		// digit.");
 		scan = new Scanner(results.get(6)); // a
-		assertEquals(scan.next(), "Applesxx");
+		assertEquals(scan.next(), "Applesxx#");
 		nextResults = scan.nextLine().toLowerCase();
 		assertTrue(nextResults.contains("digit"));
 		// assertEquals(scan.nextLine(), " The password must contain at least one

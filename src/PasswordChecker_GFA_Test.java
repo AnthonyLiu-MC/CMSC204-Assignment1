@@ -34,7 +34,7 @@ public class PasswordChecker_GFA_Test {
 	@Test
 	public void testIsValidPassword() {
 		try {
-			assertEquals(true, PasswordCheckerUtility.isValidPassword("strongPWD1"));
+			assertEquals(true, PasswordCheckerUtility.isValidPassword("strongPWD1!"));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			assertTrue("Threw some incorrect exception", false);
